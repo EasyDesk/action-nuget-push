@@ -1,0 +1,26 @@
+name: Push Nuget Packages
+description: Creates a Nuget packages from compiled sources
+
+branding:
+  color: blue
+  icon: upload-cloud
+
+inputs:
+  nuget-api-key:
+    description: The Nuget API key.
+    required: true
+  nuget-url:
+    description: Url of the Nuget server (defaults to nuget.org).
+    required: false
+    default: https://api.nuget.org/v3/index.json
+  publish-dir:
+    description: Directory containing all packages to push (defaults to the current directory).
+    required: false
+    default: .
+
+runs:
+  using: composite
+  steps:
+    - name: Push Nuget packages
+      shell: bash
+      run: dotnet nuget push "${{ inputs.publish-dir }}/*.nupkg" -k "${{ inputs.nuget-api-key }}" -s "${{ inputs.nuget-url }}"
