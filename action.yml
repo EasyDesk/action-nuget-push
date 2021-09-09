@@ -1,5 +1,5 @@
 name: Push Nuget Packages
-description: Creates a Nuget packages from compiled sources
+description: Push all nuget packages inside a directory.
 
 branding:
   color: blue
